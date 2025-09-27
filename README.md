@@ -54,9 +54,16 @@
 
 ---
 ## **💡4. 작품 소개영상**
-```python
+
+> **참고**: 썸네일과 유튜브 영상을 등록하는 방법입니다.
+```Python
+아래와 같이 작성하면, 썸네일과 링크등록을 할 수 있습니다.
+[![영상 제목](유튜브 썸네일 URL)](유튜브 영상 URL)
+
+작성 예시 : 저는 다음과 같이 작성하니, 아래와 같이 링크가 연결된 썸네일 이미지가 등록되었네요! 
 [![한이음 드림업 프로젝트 소개](https://t1.daumcdn.net/cafeattach/yv8a/843e82472337eda73d22f5ce5f4b9beb3c9cfece)](https://youtu.be/Z6AcirN5684?si=LVQE4deD56aUPQWe)
 ```
+[![한이음 드림업 프로젝트 소개](https://t1.daumcdn.net/cafeattach/yv8a/843e82472337eda73d22f5ce5f4b9beb3c9cfece)](https://youtu.be/Z6AcirN5684?si=LVQE4deD56aUPQWe)
 
 ---
 ## **💡5. 핵심 소스코드**
