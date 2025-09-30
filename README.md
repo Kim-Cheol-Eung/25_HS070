@@ -36,7 +36,7 @@
 ---
 
 ## **💡2. 팀원 소개**
-| <img width="80" height="100" src="/profiles/1.jpg"> | <img width="80" height="100" alt="image" src="/profiles/2.jpg"> | <img width="80" height="100" alt="image" src="/profiles/3.jpg"> | <img width="80" height="100" alt="image" src="/profiles/4.jpg"> | <img width="80" height="100" alt="image" src="/profiles/4.jpg"> | <img width="80" height="100" alt="image" src="/profiles/5.jpg"> | <img width="80" height="100" alt="image" src="/profiles/6.jpg"> |
+| <img width="80" height="100" src="/profiles/1.jpg"> | <img width="80" height="100" alt="image" src="/profiles/2.jpg"> | <img width="80" height="100" alt="image" src="/profiles/3.jpg"> | <img width="80" height="100" alt="image" src="/profiles/4.jpg"> | <img width="80" height="100" alt="image" src="/profiles/5.png"> | <img width="80" height="100" alt="image" src="/profiles/6.jpg"> | <img width="80" height="100" alt="image" src="/profiles/7.png"> |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **김철응** | **심가은** | **이유빈** | **김백강** | **유민지** | **최지훈** | **안영휘** |
 | • 팀장 <br> • 데이터수집 | • 서류작성&취합 | • 기술개발 | • 장비점검 | • 데이터분석 | • 프로젝트 멘토 | • 지도교수 |
