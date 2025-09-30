@@ -36,7 +36,7 @@
 ---
 
 ## **💡2. 팀원 소개**
-| <img width="80" height="100" src="https://pics.craiyon.com/2024-03-29/TAgYq3VcQKe3IkDw6PBd1A.webp"> | <img width="80" height="100" alt="image" src="https://image2.1004gundam.com/item_images/goods/380/1376406813.jpg"> | <img width="80" height="100" alt="image" src="https://image2.1004gundam.com/item_images/goods/380/1376406811.jpg"> | <img width="80" height="100" alt="image" src="https://www.sideshow.com/storage/product-images/903245/green-ranger-dragonzord_mighty-morphin-power-rangers_feature.jpg"> | <img width="80" height="100" alt="image" src="https://e7.pngegg.com/pngimages/767/8/png-clipart-kimberly-hart-katherine-hillard-pink-super-sentai-mighty-morphin-power-rangers-power-rangers-fictional-character-magenta-thumbnail.png"> | <img width="80" height="100" alt="image" src="https://m.herotime.co.kr/web/product/big/202312/852289aa69b6ac9eb8d5f4d03be0c40f.png"> | <img width="80" height="100" alt="image" src="https://ecimg.cafe24img.com/pg168b06062900060/asl1052/web/product/big/20240401/cb914c20ffcaf86d6d8f593f8420793b.jpg"> |
+| <img width="80" height="100" src="/profiles/1.jpg"> | <img width="80" height="100" alt="image" src="/profiles/2.jpg"> | <img width="80" height="100" alt="image" src="/profiles/3.jpg"> | <img width="80" height="100" alt="image" src="/profiles/4.jpg"> | <img width="80" height="100" alt="image" src="/profiles/4.jpg"> | <img width="80" height="100" alt="image" src="/profiles/5.jpg"> | <img width="80" height="100" alt="image" src="/profiles/6.jpg"> |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **김철응** | **심가은** | **이유빈** | **김백강** | **유민지** | **최지훈** | **안영휘** |
 | • 팀장 <br> • 데이터수집 | • 서류작성&취합 | • 기술개발 | • 장비점검 | • 데이터분석 | • 프로젝트 멘토 | • 지도교수 |
@@ -84,6 +84,7 @@
                 clr = (255, 200, 0)
 
 ```
+
 
 
 
