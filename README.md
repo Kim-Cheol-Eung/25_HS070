@@ -3,7 +3,7 @@
 **1-1. 프로젝트 소개**
 - 프로젝트 명 : 인공지능기반의 노인 낙상 예측 시스템 구현
 - 프로젝트 정의 : 실시간 낙상 예측 및 감지 시스템</br>
-  <img width="800" height="800" alt="image" src="https://t1.daumcdn.net/cafeattach/yv8a/f9a34015f3093426cda13865a67b755c1e97ab96" style="display:block;margin:0 auto" />
+  <img width="800" height="800" alt="image" src="https://lh3.googleusercontent.com/rd-gg/AAHar4fE6_wbV_HcE8g2MzERQv8Avs5YJ4Yv9PJm_VOnX9dMeCuiDMA2HsYRIk0z7JEtKeVcEzCVQf2tz4CyqO0aPyuG6KXcWEi2HCrm0_DoRXTKZaFTkKkvzn5_KEgZbGJcz31mPCG_w46F621B8pCvkBkHyaMoc88tNiWCjyW2uuwSeKOnJFsD6iuDIUIzKWRVzYP4EVzteJnCxiQKnXsZIcahYHylNCk1IbzuvbXgxsFTsKAS08ImJqeD_09Vd-xHZ2VdOBg5NKKnVhA6c1RqWUcoyWrah9zydX7qj3kIYTVqvbFOSTeXx6h57nnpPOMSBjoVp-KVg9ZfkLRHDNSObTLcNi-Vo-f7_U8yiE1BTZk3oik9VRctBp1E6xHq_-I2I-HD544OYGbAUP_nTf9QXRfXC8T9zRaSgFSRAAbtaA32a7d2zeOF4UNn4NZ0T6GR4dd5hq309idJwLx5-hI7ODSHUvPTobNQFKjS49hq_J8ZJqt2vQFlV3ggInKJEuwh1Kv1bfKnK4BNYmQQ8nmv2nwWcdQa2nUZJvxqpoSh-jSynbTwlXYAR3YLGdlJNJKbPlUtbT_2PCiRe3k-YHfbmHWz7OkU9lBcvT3cjx-mA9DPdCbh8XPKzPWhau1EFD-8XJ644MYNYk6mK1fRyWpz4FZLvzbWHCSo5bxh5suD2jD9stbIMplDz75E0JST_JzJHXtnfyNOpVzzGraUAI3zE-Gc1zCmPnyTm5aMpzCsnCSbb-KRJHdD5-7Udi_zeHHGb2fxZwXv0XOOaiIMjKqHXnFwckQL_IJcLlzbxO-Zi1lzK8pxJ4aDvCoHN525dVfRSPs-kTP9a3lP-X9BdN3StM77rhd-w60ZyCvbgoMNbUv-CD1aE5vIellfUztAihXU6-cMATtG0mlanAeynSp1ZRpQkCUz-QYapSnxrzfSR5LMs2TGr16jxa_uyRLAlPTnRRZnSj4U20anPjY_baL0PKdumGTcLY6_G_qSnlkgH__q3WoeTaNbjkmmUXerPr0a0kKWXQXmTGUANmX4xiCtKSo0-8ov-xsGnuzjrD-kBck0BFjTek1dkzmPM-D6xt_tvrU-4ipbwyaZgfm0-7LF5vaSwzHSrNO3USkcP5wIwIx6sX0iRcgVv8HQANbdH9RxR6JEKsvctYqRQMwA7967aPAWaqlsaEM-01IigBGffVVbmN-g8kMS9xwFgU0xTv0ZBqS2693JJRajrTeZOaB_1xMX3vPUqwowx82G7wKrhhgwBMzMf2do-g5qj78nhZLKQh6JA7Ma_QXwfOGZVtPFuyfv9dM05Zv4yg=s1024" style="display:block;margin:0 auto" />
 
 **1-2. 개발 배경 및 필요성**
 - 낙상 후 사망률이 높아 예방과 신속한 대응이 필수적이다. 기존의 낙상 감지 시스템(CCTV, 웨어러블 기기, 응급 버튼 등)은 개인정보 보호, 착용 거부감, 비효율적인 감지 등의 한계를 가진다. 이를 해결하기 위해 인공지능(AI) 기반 실시간 낙상 예측 및 감지 시스템이 필요하다.
@@ -84,6 +84,7 @@
                 clr = (255, 200, 0)
 
 ```
+
 
 
 
