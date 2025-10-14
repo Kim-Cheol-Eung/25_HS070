@@ -15,7 +15,7 @@ app.use(express.json());
 const dbConfig = {
     host: 'localhost',
     user: 'root', // MySQL 사용자명
-    password: '{DB비번}', // MySQL 비밀번호
+    password: 'qhdks!@34', // MySQL 비밀번호
     database: 'fall_detection_system',
     waitForConnections: true,
     connectionLimit: 10,
