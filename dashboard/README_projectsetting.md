@@ -1,5 +1,7 @@
 # hanium_vue
-
+```
+cd dashboard
+```
 ## Project 설치
 ```
 npm install
