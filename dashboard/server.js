@@ -229,7 +229,7 @@ app.get('/api/realtime-notifications', async (req, res) => {
             FROM notifications n
             LEFT JOIN patients p ON n.patient_id = p.id
             LEFT JOIN rooms r ON n.room_id = r.id
-            WHERE n.created_at >= DATE_SUB(NOW(), INTERVAL 2 HOUR)
+            # WHERE n.created_at >= DATE_SUB(NOW(), INTERVAL 2 HOUR)
             ORDER BY n.created_at DESC
             LIMIT 20
         `);
