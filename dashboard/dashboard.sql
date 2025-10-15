@@ -214,7 +214,114 @@ SELECT
     COUNT(*) as total_incidents,
     SUM(CASE WHEN incident_type = 'accident' THEN 1 ELSE 0 END) as accidents,
     SUM(CASE WHEN incident_type = 'alert' THEN 1 ELSE 0 END) as alerts,
+    SUM(CASE WHEN incident_type = 'near_miss' THEN 1 ELSE 0 END) as near_misses,
     SUM(CASE WHEN status = 'resolved' THEN 1 ELSE 0 END) as resolved,
-    SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending
+    SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending,
+    SUM(CASE WHEN status = 'in_progress' THEN 1 ELSE 0 END) as in_progress
 FROM fall_incidents
-WHERE DATE(created_at) = DATE('now', 'localtime');
+WHERE DATE(created_at) = CURDATE();
+
+-- 최근 낙상사고 상세 뷰
+CREATE VIEW v_recent_fall_incidents AS
+SELECT 
+    fi.id,
+    fi.incident_type,
+    fi.severity,
+    fi.status,
+    fi.created_at,
+    p.patient_code,
+    p.name as patient_name,
+    p.age as patient_age,
+    p.fall_risk_level,
+    r.room_number,
+    r.floor,
+    fi.description,
+    fi.response_action,
+    fi.responded_by,
+    TIMESTAMPDIFF(MINUTE, fi.created_at, COALESCE(fi.resolved_at, NOW())) as elapsed_minutes
+FROM fall_incidents fi
+JOIN patients p ON fi.patient_id = p.id
+JOIN rooms r ON fi.room_id = r.id
+ORDER BY fi.created_at DESC
+LIMIT 50;
+
+-- 병실별 위험도 통계 뷰
+CREATE VIEW v_room_risk_summary AS
+SELECT 
+    r.id as room_id,
+    r.room_number,
+    r.floor,
+    r.status as room_status,
+    COUNT(p.id) as patient_count,
+    SUM(CASE WHEN p.fall_risk_level = 'critical' THEN 1 ELSE 0 END) as critical_patients,
+    SUM(CASE WHEN p.fall_risk_level = 'high' THEN 1 ELSE 0 END) as high_risk_patients,
+    SUM(CASE WHEN p.fall_risk_level = 'medium' THEN 1 ELSE 0 END) as medium_risk_patients,
+    SUM(CASE WHEN p.fall_risk_level = 'low' THEN 1 ELSE 0 END) as low_risk_patients,
+    (SELECT COUNT(*) FROM fall_incidents fi WHERE fi.room_id = r.id AND DATE(fi.created_at) = CURDATE()) as today_incidents
+FROM rooms r
+LEFT JOIN patients p ON r.id = p.room_id AND p.status = 'active'
+GROUP BY r.id, r.room_number, r.floor, r.status;
+
+-- 미읽은 알림 뷰
+CREATE VIEW v_unread_notifications AS
+SELECT 
+    n.id,
+    n.type,
+    n.title,
+    n.message,
+    n.priority,
+    n.created_at,
+    p.name as patient_name,
+    r.room_number,
+    r.floor
+FROM notifications n
+LEFT JOIN patients p ON n.patient_id = p.id
+LEFT JOIN rooms r ON n.room_id = r.id
+WHERE n.is_read = FALSE
+ORDER BY n.created_at DESC;
+
+-- ================================
+-- 트리거 생성 (자동화)
+-- ================================
+
+-- 낙상사고 발생 시 자동으로 알림 생성
+DELIMITER //
+
+CREATE TRIGGER after_fall_incident_insert
+AFTER INSERT ON fall_incidents
+FOR EACH ROW
+BEGIN
+    DECLARE alert_type VARCHAR(20);
+    DECLARE alert_priority VARCHAR(20);
+    DECLARE alert_message TEXT;
+    DECLARE patient_name VARCHAR(100);
+    DECLARE room_num VARCHAR(10);
+    
+    -- 환자명과 병실 정보 가져오기
+    SELECT p.name, r.room_number 
+    INTO patient_name, room_num
+    FROM patients p
+    JOIN rooms r ON p.room_id = r.id
+    WHERE p.id = NEW.patient_id;
+    
+    -- 사고 유형에 따라 알림 설정
+    IF NEW.incident_type = 'accident' THEN
+        SET alert_type = 'emergency';
+        SET alert_priority = 'critical';
+        SET alert_message = CONCAT(room_num, '호 ', patient_name, ' 환자 낙상사고 발생 - 즉시 대응 필요');
+    ELSEIF NEW.incident_type = 'alert' THEN
+        SET alert_type = 'warning';
+        SET alert_priority = 'high';
+        SET alert_message = CONCAT(room_num, '호 ', patient_name, ' 환자 낙상위험 감지 - 주의 관찰');
+    ELSE
+        SET alert_type = 'info';
+        SET alert_priority = 'medium';
+        SET alert_message = CONCAT(room_num, '호 ', patient_name, ' 환자 모니터링 이벤트');
+    END IF;
+    
+    -- 알림 자동 생성
+    INSERT INTO notifications (patient_id, room_id, incident_id, type, message, priority, created_at)
+    VALUES (NEW.patient_id, NEW.room_id, NEW.id, alert_type, alert_message, alert_priority, NOW());
+END//
+
+DELIMITER ;
