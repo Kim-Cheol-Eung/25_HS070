@@ -100,7 +100,8 @@ app.get('/api/fall-incidents', async (req, res) => {
         const fallIncidents = rows.map(row => ({
             id: row.id,
             time: row.time,
-            patientName: row.patient_name.replace(/(.{1}).*(.{1})/, '$1**'),
+            //patientName: row.patient_name.replace(/(.{1}).*(.{1})/, '$1**'),
+            patientName: row.patient_name,
             room: row.room + '호',
             status: row.status === 'critical' ? '사고발생' : '경미사고',
             response: row.response || '대응 중'
@@ -165,7 +166,8 @@ app.get('/api/fall-alerts', async (req, res) => {
         const fallAlerts = rows.map(row => ({
             id: row.id,
             time: row.time,
-            patientName: row.patient_name.replace(/(.{1}).*(.{1})/, '$1**'),
+            //patientName: row.patient_name.replace(/(.{1}).*(.{1})/, '$1**'),
+            patientName: row.patient_name,
             room: row.room + '호',
             status: '경보발생',
             action: row.action || '관찰 중'
@@ -341,21 +343,44 @@ app.post('/api/fall-incident', async (req, res) => {
     try {
         const { patient_id, room_id, incident_type, severity, message } = req.body;
         
+        // 필수 파라미터 검증
+        if (!patient_id || !room_id || !incident_type || !message) {
+            return res.status(400).json({ 
+                success: false, 
+                error: '필수 파라미터가 누락되었습니다. (patient_id, room_id, incident_type, message)' 
+            });
+        }
+        
+        // fall_incidents 테이블에 삽입
         const [result] = await pool.execute(`
-            INSERT INTO fall_incidents (patient_id, room_id, incident_type, severity, message, created_at)
-            VALUES (?, ?, ?, ?, ?, NOW())
-        `, [patient_id, room_id, incident_type, severity, message]);
+            INSERT INTO fall_incidents 
+            (patient_id, room_id, incident_type, severity, description, status, created_at)
+            VALUES (?, ?, ?, ?, ?, 'pending', NOW())
+        `, [patient_id, room_id, incident_type, severity || 'moderate', message]);
 
-        // 알림도 함께 생성
-        await pool.execute(`
-            INSERT INTO notifications (patient_id, room_id, type, message, created_at)
-            VALUES (?, ?, ?, ?, NOW())
-        `, [patient_id, room_id, incident_type === 'accident' ? 'emergency' : 'warning', message]);
+        // 알림도 함께 생성 (priority 포함)
+        // const notificationType = incident_type === 'accident' ? 'emergency' : 'warning';
+        // const notificationPriority = incident_type === 'accident' ? 'critical' : 'high';
+        
+        // await pool.execute(`
+        //     INSERT INTO notifications 
+        //     (patient_id, room_id, incident_id, type, message, priority, created_at)
+        //     VALUES (?, ?, ?, ?, ?, ?, NOW())
+        // `, [patient_id, room_id, result.insertId, notificationType, message, notificationPriority]);
 
-        res.json({ success: true, data: { id: result.insertId } });
+        res.json({ 
+            success: true, 
+            data: { 
+                id: result.insertId,
+                message: '낙상 사고/경보가 등록되었습니다.'
+            } 
+        });
     } catch (error) {
         console.error('사고 등록 오류:', error);
-        res.status(500).json({ success: false, error: error.message });
+        res.status(500).json({ 
+            success: false, 
+            error: error.message 
+        });
     }
 });
 
