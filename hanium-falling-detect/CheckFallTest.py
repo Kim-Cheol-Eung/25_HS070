@@ -73,30 +73,37 @@ def send_alert(confidence):
         print(f"❌ 알림 실패: {e}")
 
 for idx in range(4):
-    print(f"반복횟수 : {idx+1}번째 체크!");
+    print(f"반복횟수 : {idx+1}번째 체크! {sum(f['conf'] for f in fall_buffer) / 5}");
     check_and_alert_fall(True, 0.8)
 
 
-print(f"반복횟수 : 5번째 체크!");
+print(f"반복횟수 : 5번째 체크! {sum(f['conf'] for f in fall_buffer) / 5}");
 check_and_alert_fall(True, 0.6)
 
-time.sleep(5)  # 쿨다운 시간 대기
-print(f"반복횟수 : 6번째 체크!");
-check_and_alert_fall(True, 0.8)
-
-time.sleep(5)  # 쿨다운 시간 대기
-print(f"반복횟수 : 7번째 체크!");
-check_and_alert_fall(True, 0.8)
-
 #time.sleep(5)  # 쿨다운 시간 대기
-print(f"반복횟수 : 8번째 체크!");
+print(f"반복횟수 : 6번째 체크! {sum(f['conf'] for f in fall_buffer) / 5}");
 check_and_alert_fall(True, 0.8)
 
-print(f"반복횟수 : 9번째 체크!");
+time.sleep(2)  # 쿨다운 시간 대기
+print(f"반복횟수 : 7번째 체크! {sum(f['conf'] for f in fall_buffer) / 5}");
 check_and_alert_fall(True, 0.8)
 
-print(f"반복횟수 : 10번째 체크!");
+time.sleep(2)  # 쿨다운 시간 대기
+print(f"반복횟수 : 8번째 체크! {sum(f['conf'] for f in fall_buffer) / 5}");
 check_and_alert_fall(True, 0.8)
 
-print(f"반복횟수 : 11번째 체크!");
+time.sleep(2)  # 쿨다운 시간 대기
+print(f"반복횟수 : 9번째 체크! {sum(f['conf'] for f in fall_buffer) / 5}");
+check_and_alert_fall(True, 0.8)
+
+time.sleep(2)  # 쿨다운 시간 대기
+print(f"반복횟수 : 10번째 체크! {sum(f['conf'] for f in fall_buffer) / 5}");
+check_and_alert_fall(True, 0.8)
+
+time.sleep(2)  # 쿨다운 시간 대기
+print(f"반복횟수 : 11번째 체크! {sum(f['conf'] for f in fall_buffer) / 5}");
+check_and_alert_fall(True, 0.8)
+
+time.sleep(2)  # 쿨다운 시간 대기
+print(f"반복횟수 : 12번째 체크! {sum(f['conf'] for f in fall_buffer) / 5}");
 check_and_alert_fall(True, 0.8)
