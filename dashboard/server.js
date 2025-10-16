@@ -100,7 +100,8 @@ app.get('/api/fall-incidents', async (req, res) => {
         const fallIncidents = rows.map(row => ({
             id: row.id,
             time: row.time,
-            patientName: row.patient_name.replace(/(.{1}).*(.{1})/, '$1**'),
+            //patientName: row.patient_name.replace(/(.{1}).*(.{1})/, '$1**'),
+            patientName : row.patient_name,
             room: row.room + '호',
             status: row.status === 'critical' ? '사고발생' : '경미사고',
             response: row.response || '대응 중'
