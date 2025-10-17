@@ -132,7 +132,9 @@ ERROR: Could not find a version that satisfies the requirement torch==2.0.1+cu12
 ERROR: No matching distribution found for torch==2.0.1+cu121
 
 # 최종 이걸로 함(torch_stable 버전명시버전에 torch버전을 맞춘것)
+nvidia-smi로 CUDA Version을 확인 후 아래의 cu121을 수정해서 진행, 지원하지 않는 경우는 index-url로 찾아서 설치
 pip install torch==2.1.0+cu121 torchvision==0.16.0+cu121 torchaudio==2.1.0+cu121 -f https://download.pytorch.org/whl/torch_stable.html
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 # 128은 torch_stable로 지원되지 않아 이렇게 설치함
 ```
 
 # 8. 설치 후 torch 버전 확인
